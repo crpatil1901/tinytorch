@@ -13,7 +13,7 @@ Implements backpropagation over a dynamically built DAG and a small neural netwo
 
 To install TinyTorch, clone this repository and install the required dependencies:
 ```bash
-git clone https://github.com/<username>/TinyTorch.git
+git clone https://github.com/crpatil1901/tinytorch.git
 cd TinyTorch
 pip install -r requirements.txt
 ```
