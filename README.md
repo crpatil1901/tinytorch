@@ -1,2 +1,2 @@
 # tinytorch
-Autograd engine in python, inspired by karpathy
+Autograd engine in python, inspired by karpathy's micrograd
