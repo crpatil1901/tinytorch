@@ -46,4 +46,13 @@ o.backward()
 ```
 
 The graph generated can be visualised using the draw_dot() function from `tinytorch.viz` module.
+
 ![example_graph](graph.png)
+
+## Todo
+
+- [x] Implement efficient tanh
+- [ ] Implement elu, relu, sigmoid, step function
+- [ ] Fix recursion limit error
+- [ ] Implement iterative backward to increase performance
+
