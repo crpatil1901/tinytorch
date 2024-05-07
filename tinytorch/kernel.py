@@ -82,15 +82,15 @@ class Value:
         return out
     
     def backward(self):
-        topo = []
+        order = []
         visited = set()
-        def build_topo(v):
+        def topo_sort(v):
             if v not in visited:
                 visited.add(v)
                 for child in v._prev:
-                    build_topo(child)
-                topo.append(v)
-        build_topo(self)
+                    topo_sort(child)
+                order.append(v)
+        topo_sort(self)
         self.grad = 1.0
-        for node in topo[::-1]:
+        for node in order[::-1]:
             node._backward()
