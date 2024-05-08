@@ -1,5 +1,5 @@
 # tinytorch
-Autograd engine in python, inspired by karpathy's micrograd
+Autograd engine in python, inspired by [karpathy](https://github.com/karpathy/micrograd)'s micrograd
 
 Implements backpropagation over a dynamically built DAG and a small neural networks library on top of it with a PyTorch-like API. Even though it has a small footprint, it is enough to build up entire deep neural nets doing binary classification.
 
@@ -12,9 +12,9 @@ Implements backpropagation over a dynamically built DAG and a small neural netwo
 ## Installation
 
 To install TinyTorch, clone this repository and install the required dependencies:
-```
-git clone https://github.com/<username>/TinyTorch.git
-cd TinyTorch
+```bash
+git clone https://github.com/crpatil1901/tinytorch.git
+cd tinytorch
 pip install -r requirements.txt
 ```
 
@@ -24,7 +24,7 @@ The notebook example.ipynb provides a full demo of training an neural network (M
 
 Below is an example usage of some basic operations and backpropagation.
 
-```
+```python
 x1 = Value(2.0, label='x1')
 x2 = Value(0.0, label='x2')
 
@@ -46,4 +46,13 @@ o.backward()
 ```
 
 The graph generated can be visualised using the draw_dot() function from `tinytorch.viz` module.
+
 ![example_graph](graph.png)
+
+## Todo
+
+- [x] Implement efficient tanh
+- [ ] Implement elu, relu, sigmoid, step function
+- [ ] Fix recursion limit error
+- [ ] Implement iterative backward to increase performance
+
