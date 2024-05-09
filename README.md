@@ -1,4 +1,5 @@
 # tinytorch
+
 Autograd engine in python, inspired by [karpathy](https://github.com/karpathy/micrograd)'s micrograd
 
 Implements backpropagation over a dynamically built DAG and a small neural networks library on top of it with a PyTorch-like API. Even though it has a small footprint, it is enough to build up entire deep neural nets doing binary classification.
@@ -12,6 +13,7 @@ Implements backpropagation over a dynamically built DAG and a small neural netwo
 ## Installation
 
 To install TinyTorch, clone this repository and install the required dependencies:
+
 ```bash
 git clone https://github.com/crpatil1901/tinytorch.git
 cd tinytorch
