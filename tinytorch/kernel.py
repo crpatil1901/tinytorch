@@ -90,6 +90,14 @@ class Value:
 
         return out
     
+    def threshold(self, threshold):
+        out = Value(0 if self.data < threshold else self.data, (self,), f'threshold_{threshold}')
+
+        def _backward():
+            self.grad += (out.data > 0) * out.grad
+
+        return out
+    
     def backward(self):
         order = []
         visited = set()
