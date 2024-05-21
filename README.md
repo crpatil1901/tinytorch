@@ -55,7 +55,8 @@ The graph generated can be visualised using the draw_dot() function from `tinyto
 
 - [x] Implement efficient tanh
 - [x] Implement ReLU
-- [ ] Implement elu, sigmoid, step function
+- [x] Implement Sigmoid (by [grpathak](https://github.com/grpathak22))
+- [ ] Implement elu, step function
 - [ ] Implement log, loginv, trig func
 - [ ] Fix recursion limit error
 - [ ] Implement iterative backward to increase performance

@@ -89,6 +89,17 @@ class Value:
         out._backward = _backward
 
         return out
+        
+    def sigmoid(self):
+        x = self.data
+        s  = 1/(1+math.exp(-x))
+        out = Value(s, (self,), 'sig')
+        
+        def _backward():
+            self.grad += s * (1-s) * out.grad
+        out._backward = _backward
+        
+        return out
     
     def threshold(self, threshold):
         out = Value(0 if self.data < threshold else self.data, (self,), f'threshold_{threshold}')
