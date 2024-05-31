@@ -1,7 +1,7 @@
 import math
 
 class Value:
-    def __init__(self, data, _children=(), _op='', label=''):
+    def __init__(self, data, _children=(), _op='', label = ''):
         self.data = data
         self.grad = 0.0
         self._backward = lambda: None
@@ -36,6 +36,7 @@ class Value:
     def __add__(self, other):
         other = other if isinstance(other, Value) else Value(other)
         out = Value(self.data + other.data, (self, other), '+')
+        
         def _backward():
             self.grad += out.grad
             other.grad += out.grad
@@ -46,6 +47,7 @@ class Value:
     def __mul__(self, other):
         other = other if isinstance(other, Value) else Value(other)
         out = Value(self.data * other.data, (self, other), '*')
+        
         def _backward():
             self.grad += other.data * out.grad
             other.grad += self.data * out.grad
@@ -66,6 +68,7 @@ class Value:
         x = self.data
         t = (math.exp(2*x) - 1) / (math.exp(2*x) + 1)
         out = Value(t, (self,), 'tanh')
+        
         def _backward():
             self.grad += (1 - t**2) * out.grad
         out._backward = _backward
@@ -76,6 +79,7 @@ class Value:
         x = self.data
         e = math.exp(x)
         out = Value(e, (self,), 'exp')
+        
         def _backward():
             self.grad += e * out.grad
         out._backward = _backward
@@ -83,6 +87,7 @@ class Value:
     
     def relu(self):
         out = Value(0 if self.data < 0 else self.data, (self,), 'ReLU')
+        
         def _backward():
             self.grad += (out.data > 0) * out.grad
         out._backward = _backward
@@ -92,6 +97,7 @@ class Value:
         x = self.data
         s = 1 / (1 + math.exp(-x))
         out = Value(s, (self,), 'Sigmoid')
+        
         def _backward():
             self.grad += s * (1 - s) * out.grad
         out._backward = _backward
@@ -100,6 +106,7 @@ class Value:
     def elu(self, alpha=1.0):
         x = self.data
         e = x if x >= 0 else alpha * (math.exp(x) - 1)
+        
         out = Value(e, (self,), 'ELU')
         def _backward():
             self.grad += out.grad if x >= 0 else alpha * math.exp(x) * out.grad
@@ -108,6 +115,7 @@ class Value:
 
     def step(self):
         out = Value(1 if self.data > 0 else 0, (self,), 'Step')
+        
         def _backward():
             self.grad += 0  # Step function has no gradient
         out._backward = _backward
@@ -118,6 +126,7 @@ class Value:
         assert x > 0, "Logarithm only defined for positive numbers"
         l = math.log(x)
         out = Value(l, (self,), 'Log')
+        
         def _backward():
             self.grad += (1 / x) * out.grad
         out._backward = _backward
@@ -127,6 +136,7 @@ class Value:
         x = self.data
         exp_x = math.exp(x)
         out = Value(exp_x, (self,), 'LogInv')
+        
         def _backward():
             self.grad += exp_x * out.grad
         out._backward = _backward
@@ -136,6 +146,7 @@ class Value:
         x = self.data
         s = math.sin(x)
         out = Value(s, (self,), 'Sin')
+        
         def _backward():
             self.grad += math.cos(x) * out.grad
         out._backward = _backward
@@ -145,6 +156,7 @@ class Value:
         x = self.data
         c = math.cos(x)
         out = Value(c, (self,), 'Cos')
+        
         def _backward():
             self.grad += -math.sin(x) * out.grad
         out._backward = _backward
